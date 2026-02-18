@@ -1,0 +1,90 @@
+---
+const features = [
+  {
+    title: "Real-time Dashboard",
+    description: "Live token counts, costs, burn rate, and activity sparklines updating every second.",
+    icon: "⚡"
+  },
+  {
+    title: "Session Tracking",
+    description: "Every coding agent session logged with model, tokens, cost, and duration.",
+    icon: "📜"
+  },
+  {
+    title: "Budget Guardrails",
+    description: "Set daily, weekly, or monthly spending limits with visual warning indicators.",
+    icon: "🛡️"
+  },
+  {
+    title: "Smart Sidebar",
+    description: "Break down spending by model, project, or agent type instantly.",
+    icon: "📊"
+  },
+  {
+    title: "Efficiency Insights",
+    description: "Analyze cache leverage, output verbosity, and cost-per-request metrics.",
+    icon: "🧠"
+  },
+  {
+    title: "Historical Trends",
+    description: "Visualize cost patterns over 7, 30, or 90 days with ASCII step charts.",
+    icon: "📈"
+  },
+  {
+    title: "Provider Limits",
+    description: "Monitor rate limits and quota usage with visual gauge indicators.",
+    icon: "🚦"
+  },
+  {
+    title: "15 Built-in Themes",
+    description: "Tokyo Night, Dracula, Nord, Catppuccin, and more to match your terminal.",
+    icon: "🎨"
+  },
+  {
+    title: "Plugin System",
+    description: "Extend with custom providers, agents, themes, and notification hooks.",
+    icon: "🧩"
+  },
+  {
+    title: "Zero Config",
+    description: "Auto-discovers credentials from Claude Code, env vars, and CLI auth files.",
+    icon: "🔧"
+  }
+];
+---
+
+<section id="features" class="py-24 bg-[var(--color-bg-header)] border-y border-[var(--color-border)] relative overflow-hidden">
+  <!-- Subtle Grid Background -->
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-16 reveal">
+      <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">
+        Everything you need to track AI spending
+      </h2>
+      <p class="text-lg text-[var(--color-text-muted)] max-w-2xl mx-auto">
+        Built for developers who want granular control and visibility over their AI infrastructure costs.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {features.map((feature, i) => (
+        <div class={`bg-[var(--color-bg-card)]/50 backdrop-blur-sm border border-[var(--color-border)] rounded-lg p-6 hover:bg-[var(--color-bg-card)] hover:border-[var(--color-primary)]/40 transition-all duration-200 group reveal stagger-${i + 1}`}>
+          <div class="flex items-start">
+            <div class="flex-shrink-0 w-10 h-10 rounded-md bg-[var(--color-bg-page)] border border-[var(--color-border)] flex items-center justify-center text-xl shadow-sm group-hover:scale-110 transition-transform">
+              {feature.icon}
+            </div>
+            <div class="ml-4">
+              <h3 class="text-lg font-semibold text-[var(--color-text-primary)] group-hover:text-[var(--color-primary)] transition-colors">
+                {feature.title}
+              </h3>
+              <p class="mt-2 text-sm text-[var(--color-text-muted)] leading-relaxed">
+                {feature.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,60 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="htop for your AI costs. Real-time terminal monitoring of LLM token usage and spending across providers and coding agents." />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/assets/icon.png" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tokentop.app/" />
+    <meta property="og:title" content="tokentop — htop for your AI costs" />
+    <meta property="og:description" content="Real-time terminal monitoring of LLM token usage and spending across providers and coding agents." />
+    <meta property="og:image" content="/assets/social-card.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://tokentop.app/" />
+    <meta property="twitter:title" content="tokentop — htop for your AI costs" />
+    <meta property="twitter:description" content="Real-time terminal monitoring of LLM token usage and spending across providers and coding agents." />
+    <meta property="twitter:image" content="/assets/social-card.png" />
+
+    <title>{title}</title>
+
+    <!-- Critical: prevent FOUC on scroll-reveal elements -->
+    <style is:inline>.reveal{opacity:0;transform:translateY(30px)}</style>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[var(--color-bg-page)] text-[var(--color-text-primary)] antialiased selection:bg-[var(--color-primary)] selection:text-[var(--color-bg-page)] overflow-x-hidden">
+    <slot />
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+---
+const providers = [
+  "Anthropic", "OpenAI", "Google Gemini", "GitHub Copilot", "Codex", 
+  "Perplexity", "Antigravity", "MiniMax", "Zai", "OpenCode Zen"
+];
+
+const agents = [
+  "OpenCode", "Claude Code", "Cursor", "Windsurf", "Gemini CLI", "Antigravity"
+];
+---
+
+<section id="providers" class="py-24 bg-[var(--color-bg-page)] relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-16 reveal">
+      Works with your stack
+    </h2>
+
+    <!-- Providers -->
+    <div class="mb-12 reveal">
+      <h3 class="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-6">
+        Supported Providers
+      </h3>
+      <div class="flex flex-wrap justify-center gap-4">
+        {providers.map((provider) => (
+          <div class="px-6 py-3 rounded-full bg-[var(--color-bg-card)] border border-[var(--color-border)] text-[var(--color-text-primary)] font-medium text-sm transition-all hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] hover:shadow-lg hover:shadow-[var(--color-primary)]/10 cursor-default select-none">
+            {provider}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Agents -->
+    <div class="reveal">
+      <h3 class="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-wider mb-6">
+        Supported Agents & CLIs
+      </h3>
+      <div class="flex flex-wrap justify-center gap-4">
+        {agents.map((agent) => (
+          <div class="px-6 py-3 rounded-full bg-[var(--color-bg-card)] border border-[var(--color-border)] text-[var(--color-text-primary)] font-medium text-sm transition-all hover:border-[var(--color-secondary)] hover:text-[var(--color-secondary)] hover:shadow-lg hover:shadow-[var(--color-secondary)]/10 cursor-default select-none">
+            {agent}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <p class="mt-12 text-sm text-[var(--color-text-muted)] opacity-70">
+      + Extend with custom plugins for any other provider
+    </p>
+  </div>
+</section>

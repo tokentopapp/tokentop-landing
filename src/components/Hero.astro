@@ -1,0 +1,77 @@
+---
+import { Image } from 'astro:assets';
+import screenshotPng from '../assets/Screenshot.png';
+
+const command = "brew install tokentopapp/tap/tokentop";
+---
+
+<section class="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden bg-[var(--color-bg-page)] text-center">
+  <!-- Glow Effect -->
+  <div class="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-[var(--color-primary)]/10 rounded-full blur-[120px] -z-10 pointer-events-none" style="animation: glowPulse 8s ease-in-out infinite;"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+    
+    <!-- Early Access Badge -->
+    <div class="inline-flex items-center px-3 py-1 rounded-full border border-[var(--color-secondary)]/30 bg-[var(--color-secondary)]/10 text-[var(--color-secondary)] text-xs font-semibold mb-8 animate-fade-in [animation-delay:100ms]">
+      <span class="mr-2">🚀</span> Under Active Development
+    </div>
+
+    <!-- Heading -->
+    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in [animation-delay:200ms]">
+      <span class="sr-only">ttop for your AI costs</span>
+      <span aria-hidden="true" class="bg-clip-text text-transparent bg-gradient-to-r from-[var(--color-primary)] via-[var(--color-secondary)] to-[var(--color-accent)]"><span class="word-rotate"><span class="word-rotate-words"><span>htop</span><span>btop</span><span>ttop</span></span></span> for your AI costs</span>
+    </h1>
+
+    <!-- Subtext -->
+    <p class="text-lg md:text-xl text-[var(--color-text-muted)] max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in [animation-delay:300ms]">
+      Real-time terminal monitoring of LLM token usage and spending across providers and coding agents.
+    </p>
+
+    <!-- CTAs -->
+    <div class="flex flex-col sm:flex-row gap-4 mb-12 animate-fade-in [animation-delay:400ms]">
+      <a href="#install" class="inline-flex items-center justify-center px-8 py-3 text-base font-semibold rounded-lg text-white bg-[var(--color-primary)] hover:bg-[var(--color-primary)]/90 transition-all shadow-lg shadow-[var(--color-primary)]/20 hover:shadow-[var(--color-primary)]/40 hover:-translate-y-0.5">
+        Get Started
+      </a>
+      <a href="https://github.com/tokentopapp/tokentop" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium rounded-lg text-[var(--color-text-primary)] bg-[var(--color-bg-card)] border border-[var(--color-border)] hover:bg-[var(--color-border)] hover:text-white transition-all hover:-translate-y-0.5">
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
+        View on GitHub
+      </a>
+    </div>
+
+    <!-- Terminal Command -->
+    <div class="mb-12 animate-fade-in [animation-delay:500ms] relative group">
+      <!-- Animated Border Beam -->
+      <div class="border-beam absolute -inset-[1px] rounded-lg pointer-events-none"></div>
+
+      <!-- Content -->
+      <div class="relative flex items-center bg-[var(--color-bg-header)] rounded-lg px-5 py-3 shadow-lg font-mono text-sm backdrop-blur-sm">
+        <span class="text-[var(--color-text-muted)] mr-3 select-none">$</span>
+        <code class="text-[var(--color-text-primary)] mr-8 select-all">{command}</code>
+        <button
+          class="ml-auto text-[var(--color-text-muted)] hover:text-white transition-colors copy-btn"
+          data-clipboard-text={command}
+          aria-label="Copy to clipboard"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Screenshot -->
+    <div class="relative w-full max-w-5xl animate-slide-up [animation-delay:600ms]">
+      <Image src={screenshotPng} alt="tokentop dashboard showing real-time AI token usage and costs" class="w-full h-auto block rounded-xl shadow-2xl" loading="eager" />
+    </div>
+
+  </div>
+</section>
+
+<script is:inline>
+(function() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var w = document.querySelector('.word-rotate-words');
+    if (w) { w.style.animation = 'none'; w.style.transform = 'translateY(-66.666%)'; }
+  }
+})();
+</script>

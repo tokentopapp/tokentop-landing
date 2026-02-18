@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import iconPng from '../assets/icon.png';
+---
+<footer class="bg-[var(--color-bg-header)] border-t border-[var(--color-border)] py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+    
+    <!-- Left -->
+    <div class="flex items-center space-x-4 mb-6 md:mb-0">
+      <Image src={iconPng} alt="tokentop logo" class="h-6 w-6 opacity-80" />
+      <span class="font-bold text-lg tracking-tight text-[var(--color-text-muted)]">tokentop</span>
+    </div>
+
+    <!-- Center (Links) -->
+    <div class="flex space-x-6 mb-6 md:mb-0 text-sm">
+      <a href="https://github.com/tokentopapp/tokentop" class="text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors">GitHub</a>
+      <a href="https://www.npmjs.com/package/@tokentop/ttop" class="text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors">npm</a>
+      <a href="https://github.com/tokentopapp/tokentop/blob/main/LICENSE" class="text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors">License</a>
+    </div>
+
+    <!-- Right -->
+    <div class="text-sm text-[var(--color-text-subtle)] text-center md:text-right">
+      <p>Made by <a href="https://github.com/nigelbazzeghin" class="hover:text-[var(--color-text-primary)] transition-colors">Nigel Bazzeghin</a></p>
+      <p class="mt-1 opacity-60">© {new Date().getFullYear()} tokentop. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
