@@ -68,23 +68,70 @@ const agents = [
   { 
     name: "Cursor", 
     color: "#00A3FF", 
+    wip: true,
     icon: "M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23"
   },
   { 
     name: "Windsurf", 
     color: "#09B6A2", 
+    wip: true,
     icon: "M23.55 5.067c-1.2038-.002-2.1806.973-2.1806 2.1765v4.8676c0 .972-.8035 1.7594-1.7597 1.7594-.568 0-1.1352-.286-1.4718-.7659l-4.9713-7.1003c-.4125-.5896-1.0837-.941-1.8103-.941-1.1334 0-2.1533.9635-2.1533 2.153v4.8957c0 .972-.7969 1.7594-1.7596 1.7594-.57 0-1.1363-.286-1.4728-.7658L.4076 5.1598C.2822 4.9798 0 5.0688 0 5.2882v4.2452c0 .2147.0656.4228.1884.599l5.4748 7.8183c.3234.462.8006.8052 1.3509.9298 1.3771.313 2.6446-.747 2.6446-2.0977v-4.893c0-.972.7875-1.7593 1.7596-1.7593h.003a1.798 1.798 0 0 1 1.4718.7658l4.9723 7.0994c.4135.5905 1.05.941 1.8093.941 1.1587 0 2.1515-.9645 2.1515-2.153v-4.8948c0-.972.7875-1.7594 1.7596-1.7594h.194a.22.22 0 0 0 .2204-.2202v-4.622a.22.22 0 0 0-.2203-.2203Z"
   },
   { 
     name: "Gemini CLI", 
     color: "#4285f4", 
+    wip: true,
     icon: "M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"
   },
   { 
     name: "Antigravity", 
     color: "#4285f4", 
+    wip: true,
     icon: "M9.16861 16.0529L17.2018 9.85156C17.5957 9.54755 18.1586 9.66612 18.3463 10.1384C19.3339 12.6288 18.8926 15.6217 16.9276 17.6766C14.9626 19.7314 12.2285 20.1821 9.72948 19.1557L6.9995 20.4775C10.9151 23.2763 15.6699 22.5841 18.6411 19.4749C20.9979 17.0103 21.7278 13.6508 21.0453 10.6214L21.0515 10.6278C20.0617 6.17736 21.2948 4.39847 23.8207 0.760904C23.8804 0.674655 23.9402 0.588405 24 0.5L20.6762 3.97585V3.96506L9.16658 16.0551M7.37742 16.7017C4.67579 14.0395 5.14158 9.91963 7.44676 7.54383C9.15135 5.78544 11.9442 5.06779 14.3821 6.12281L17.0005 4.87559C16.5288 4.52392 15.9242 4.14566 15.2305 3.87986C12.0948 2.54882 8.34069 3.21127 5.79171 5.8386C3.33985 8.36779 2.56881 12.2567 3.89286 15.5751C4.88192 18.0552 3.26056 19.8094 1.62731 21.5801C1.04853 22.2078 0.467774 22.8355 0 23.5L7.3754 16.7037" 
   }
+];
+
+const plugins = [
+  // PROVIDERS (built-in — no standalone repos)
+  { name: "provider-anthropic", type: "Provider", desc: "Anthropic Claude subscription usage tracking via OAuth.", official: true },
+  { name: "provider-openai-api", type: "Provider", desc: "OpenAI API usage tracking via OAuth. Supports GPT-4.1, o3, and all current models.", official: true },
+  { name: "provider-gemini", type: "Provider", desc: "Gemini CLI usage tracking via Google OAuth.", official: true },
+  { name: "provider-github-copilot", type: "Provider", desc: "GitHub Copilot usage tracking including premium requests.", official: true },
+  { name: "provider-codex", type: "Provider", desc: "OpenAI Codex subscription usage tracking via OAuth.", official: true },
+  { name: "provider-perplexity", type: "Provider", desc: "Perplexity AI API usage tracking (credit-based).", official: true },
+  { name: "provider-antigravity", type: "Provider", desc: "Antigravity (Google Gemini Advanced) subscription usage tracking.", official: true },
+  { name: "provider-minimax", type: "Provider", desc: "MiniMax usage and quota tracking.", official: true },
+  { name: "provider-opencode-zen", type: "Provider", desc: "OpenCode Zen — curated AI models for coding agents.", official: true },
+  { name: "provider-zai", type: "Provider", desc: "Z.ai coding plan usage and quota tracking.", official: true },
+
+  // AGENTS (external repos in tokentopapp org — versions fetched dynamically)
+  { name: "agent-opencode", type: "Agent", desc: "OpenCode session parsing, credential discovery, and real-time cost tracking.", official: true, repo: "tokentopapp/agent-opencode" },
+  { name: "agent-claude-code", type: "Agent", desc: "Claude Code session parsing, credential discovery, and real-time cost tracking.", official: true, repo: "tokentopapp/agent-claude-code" },
+  { name: "agent-cursor", type: "Agent", desc: "Cursor session parsing, credential discovery, and real-time cost tracking.", official: true, repo: "tokentopapp/agent-cursor", meta: "🚧" },
+  { name: "agent-windsurf", type: "Agent", desc: "Windsurf (Codeium) session parsing, credential discovery, and cost tracking.", official: true, repo: "tokentopapp/agent-windsurf", meta: "🚧" },
+  { name: "agent-gemini-cli", type: "Agent", desc: "Gemini CLI session parsing, credential discovery, and real-time cost tracking.", official: true, repo: "tokentopapp/agent-gemini-cli", meta: "🚧" },
+  { name: "agent-antigravity", type: "Agent", desc: "Antigravity session parsing, credential discovery, and real-time cost tracking.", official: true, repo: "tokentopapp/agent-antigravity", meta: "🚧" },
+
+  // THEMES (built-in — no standalone repos)
+  { name: "theme-tokyo-night", type: "Theme", desc: "Tokyo Night color scheme. Dark, vibrant blues and purples.", official: true },
+  { name: "theme-opencode", type: "Theme", desc: "OpenCode color scheme. Dark with teal and gold accents.", official: true },
+  { name: "theme-claude-code", type: "Theme", desc: "Claude Code color scheme. Anthropic-inspired dark theme.", official: true },
+  { name: "theme-dracula", type: "Theme", desc: "Dracula color scheme. Classic dark theme with vivid colors.", official: true },
+  { name: "theme-nord", type: "Theme", desc: "Nord color scheme. Arctic, north-bluish palette.", official: true },
+  { name: "theme-one-dark", type: "Theme", desc: "One Dark color scheme. Inspired by Atom's iconic theme.", official: true },
+  { name: "theme-rose-pine", type: "Theme", desc: "Rosé Pine color scheme. Soho vibes for dark mode.", official: true },
+  { name: "theme-rose-pine-dawn", type: "Theme", desc: "Rosé Pine Dawn. Light variant of Rosé Pine.", official: true },
+  { name: "theme-catppuccin-mocha", type: "Theme", desc: "Catppuccin Mocha. Soothing warm dark pastel theme.", official: true },
+  { name: "theme-catppuccin-latte", type: "Theme", desc: "Catppuccin Latte. Light pastel theme.", official: true },
+  { name: "theme-kanagawa", type: "Theme", desc: "Kanagawa color scheme. Inspired by Katsushika Hokusai's The Great Wave.", official: true },
+  { name: "theme-gruvbox-dark", type: "Theme", desc: "Gruvbox Dark. Retro groove color scheme.", official: true },
+  { name: "theme-gruvbox-light", type: "Theme", desc: "Gruvbox Light. Retro groove, light variant.", official: true },
+  { name: "theme-github-light", type: "Theme", desc: "GitHub Light. Clean and familiar light theme.", official: true },
+  { name: "theme-solarized-light", type: "Theme", desc: "Solarized Light. Precision colors for readability.", official: true },
+
+  // NOTIFICATIONS (built-in — no standalone repos)
+  { name: "notification-terminal-bell", type: "Notification", desc: "Simple terminal bell (BEL character) for budget alerts.", official: true },
+  { name: "notification-visual-flash", type: "Notification", desc: "Visual screen flash using ANSI escape sequences for alerts.", official: true },
 ];
 ---
 
@@ -177,13 +224,242 @@ const agents = [
             
             <!-- Bottom Line Accent -->
             <div class="absolute bottom-0 left-0 w-full h-0.5 bg-[var(--hover-color)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+            
+            {item.wip && (
+              <span class="absolute bottom-1.5 right-1.5 text-[9px] font-semibold uppercase tracking-wider text-[var(--color-text-muted)] opacity-40 z-10">
+                wip
+              </span>
+            )}
           </div>
         ))}
       </div>
     </div>
 
-    <p class="mt-16 text-sm text-[var(--color-text-muted)] opacity-70">
-      + Extend with custom plugins for any other provider
-    </p>
+    <!-- Plugin Registry -->
+    <div class="mt-24 reveal plugin-registry-container">
+      <div class="mb-10 text-center">
+        <h3 class="text-2xl md:text-3xl font-bold tracking-tight mb-3">
+          Plugin Registry
+        </h3>
+        <p class="text-[var(--color-text-muted)] text-sm max-w-2xl mx-auto">
+          {plugins.length} built-in plugins ready to use. 
+        </p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="flex flex-wrap justify-center gap-2 mb-12" id="plugin-filters">
+        <button 
+          class="px-4 py-1.5 rounded-full text-xs font-medium border transition-all duration-300 active-filter"
+          data-filter="all"
+          style="border-color: var(--color-primary); color: var(--color-text-primary); background: rgba(122, 162, 247, 0.1);"
+        >
+          All
+        </button>
+        {([
+          { key: "Provider", label: "Providers" },
+          { key: "Agent", label: "Agents" },
+          { key: "Theme", label: "Themes" },
+          { key: "Notification", label: "Notifications" },
+
+        ] as const).map((filter) => (
+          <button 
+            class="px-4 py-1.5 rounded-full text-xs font-medium border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-all duration-300"
+            data-filter={filter.key}
+          >
+            {filter.label}
+          </button>
+        ))}
+      </div>
+
+      <!-- Plugin Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto text-left relative" id="plugin-grid">
+        {plugins.map((plugin) => {
+          const isTheme = plugin.type === 'Theme';
+          
+          return (
+            <div 
+              class={`plugin-card group flex flex-col rounded-xl border transition-all duration-300 hover:-translate-y-1 relative overflow-hidden bg-[var(--color-bg-card)]
+                ${isTheme 
+                  ? 'p-4 border-[var(--color-border)] hover:border-[var(--color-border-muted)] h-auto' 
+                  : 'p-5 border-[var(--color-border)] hover:border-[var(--color-border-muted)] h-full'
+                }
+              `}
+              data-category={plugin.type}
+            >
+
+              {/* Theme Compact Layout */}
+              {isTheme && (
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg flex-shrink-0 bg-gradient-to-br from-[var(--color-bg-page)] to-[var(--color-bg-card)] border border-[var(--color-border)] flex items-center justify-center">
+                     <div class="w-3 h-3 rounded-full" style={`background-color: ${
+                        plugin.name.includes('tokyo') ? '#7aa2f7' :
+                        plugin.name.includes('opencode') ? '#09B6A2' :
+                        plugin.name.includes('claude') ? '#d4a27f' :
+                        plugin.name.includes('dracula') ? '#ff79c6' :
+                        plugin.name.includes('nord') ? '#88c0d0' :
+                        plugin.name.includes('one-dark') ? '#e06c75' :
+                        plugin.name.includes('rose') ? '#ebbcba' :
+                        plugin.name.includes('catppuccin') ? '#f5c2e7' :
+                        plugin.name.includes('kanagawa') ? '#dca561' :
+                        plugin.name.includes('gruvbox') ? '#fabd2f' :
+                        plugin.name.includes('solarized') ? '#b58900' :
+                        plugin.name.includes('github') ? '#24292e' :
+                        'var(--color-text-muted)'
+                     }`}></div>
+                  </div>
+                  <span class="font-mono text-xs font-bold text-[var(--color-text-primary)] truncate block leading-tight">
+                    {plugin.name.replace('theme-', '')}
+                  </span>
+                  <span class="ml-auto text-[10px] text-[var(--color-text-subtle)] opacity-60">Built-in</span>
+                </div>
+              )}
+
+              {/* Standard Layout (Providers, Agents, Notifications) */}
+              {!isTheme && (
+                <>
+                  <div class="flex items-start justify-between mb-3 gap-3">
+                    <span class="font-mono text-sm font-semibold text-[var(--color-text-primary)] break-all leading-tight group-hover:text-[var(--color-primary)] transition-colors">
+                      {plugin.name}
+                    </span>
+                    {plugin.official && (
+                      <span class="flex-shrink-0 px-1.5 py-0.5 rounded-full text-[9px] uppercase font-bold tracking-wider border border-[var(--color-primary)]/30 text-[var(--color-primary)] bg-[var(--color-primary)]/5">
+                        Official
+                      </span>
+                    )}
+                  </div>
+
+                  <p class="text-xs text-[var(--color-text-muted)] mb-4 leading-relaxed flex-grow line-clamp-2">
+                    {plugin.desc}
+                  </p>
+
+                  <div class="flex items-center justify-between text-[10px] font-mono text-[var(--color-text-subtle)] mt-auto pt-3 border-t border-[var(--color-border)] border-dashed">
+                    <div class="flex items-center gap-2">
+                      <span class={`px-1.5 py-0.5 rounded border ${
+                        plugin.type === 'Provider' ? 'border-emerald-500/20 text-emerald-400 bg-emerald-500/5' : 
+                        plugin.type === 'Agent' ? 'border-amber-500/20 text-amber-400 bg-amber-500/5' : 
+                        'border-[var(--color-border)]'
+                      }`}>
+                        {plugin.type}
+                      </span>
+                      {plugin.meta && <span class="text-[var(--color-text-muted)]">{plugin.meta}</span>}
+                    </div>
+                    {plugin.repo ? (
+                      <div class="flex items-center gap-2">
+                        <span class="opacity-60 plugin-version" data-repo={plugin.repo}>...</span>
+                        <a href={`https://github.com/${plugin.repo}`} target="_blank" rel="noopener noreferrer" class="text-[var(--color-text-subtle)] hover:text-[var(--color-primary)] transition-colors cursor-pointer" aria-label={`${plugin.name} on GitHub`}>
+                          <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                        </a>
+                      </div>
+                    ) : (
+                      <span class="opacity-60">Built-in</span>
+                    )}
+                  </div>
+                </>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Plugin SDK — standalone below grid -->
+      <div class="mt-8 max-w-6xl mx-auto">
+        <div class="group flex flex-col rounded-xl border p-6 border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5 hover:bg-[var(--color-primary)]/10 hover:shadow-[0_0_20px_rgba(122,162,247,0.1)] transition-all duration-300 relative overflow-hidden">
+          <div class="flex flex-col md:flex-row items-center justify-between w-full gap-6">
+            <div class="text-left">
+              <h4 class="text-lg font-bold text-[var(--color-text-primary)] mb-1 flex items-center gap-2">
+                <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                </svg>
+                plugin-sdk
+                <span class="text-xs font-normal text-[var(--color-text-muted)] plugin-version" data-repo="tokentopapp/plugin-sdk"></span>
+              </h4>
+              <p class="text-[var(--color-text-muted)] text-sm">SDK for building tokentop plugins — type definitions, helpers, and test harness.</p>
+            </div>
+            <a href="https://github.com/tokentopapp/plugin-sdk" class="flex-shrink-0 px-5 py-2.5 rounded-lg bg-[var(--color-primary)] text-[var(--color-bg-page)] font-bold text-sm hover:opacity-90 transition-opacity flex items-center gap-2">
+              Build a Plugin
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<script>
+  // Fetch plugin versions from GitHub releases API
+  document.querySelectorAll('.plugin-version[data-repo]').forEach(el => {
+    const repo = el.getAttribute('data-repo');
+    if (!repo) return;
+    fetch(`https://api.github.com/repos/${repo}/releases/latest`)
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data?.tag_name) {
+          el.textContent = data.tag_name;
+        } else {
+          el.textContent = '';
+        }
+      })
+      .catch(() => { el.textContent = ''; });
+  });
+
+  // Simple vanilla JS for tab filtering
+  document.addEventListener('DOMContentLoaded', () => {
+    const filters = document.getElementById('plugin-filters');
+    if (!filters) return;
+    
+    // Add event delegation or direct listeners
+    const buttons = filters.querySelectorAll('button');
+    const cards = document.querySelectorAll('.plugin-card');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Reset all buttons
+        buttons.forEach(b => {
+          b.classList.remove('active-filter');
+          // Reset inline styles that might have been set
+          b.style.borderColor = 'var(--color-border)';
+          b.style.color = 'var(--color-text-muted)';
+          b.style.background = 'transparent';
+        });
+        
+        // Activate clicked button
+        btn.classList.add('active-filter');
+        btn.style.borderColor = 'var(--color-primary)';
+        btn.style.color = 'var(--color-text-primary)';
+        btn.style.background = 'rgba(122, 162, 247, 0.1)';
+
+        // Filter cards
+        const filterValue = btn.getAttribute('data-filter');
+        
+        cards.forEach(card => {
+          const cardEl = card as HTMLElement; 
+          const cardCategory = cardEl.getAttribute('data-category');
+          
+          if (filterValue === 'all' || cardCategory === filterValue) {
+            cardEl.style.display = 'flex';
+            
+            // Layout adjustments for different filtered states
+            if (filterValue === 'Theme' && cardCategory === 'Theme') {
+               // When showing only themes, we can keep the grid as is or dense it up
+               // The grid classes on parent handle responsive columns
+            }
+
+            // Trigger animation
+            cardEl.style.opacity = '0';
+            cardEl.style.transform = 'translateY(10px)';
+            requestAnimationFrame(() => {
+              cardEl.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+              cardEl.style.opacity = '1';
+              cardEl.style.transform = 'translateY(0)';
+            });
+          } else {
+            cardEl.style.display = 'none';
+          }
+        });
+      });
+    });
+  });
+</script>

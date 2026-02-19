@@ -4,8 +4,8 @@ import iconPng from '../assets/icon.png';
 
 const links = [
   { href: "#features", label: "Features" },
-  { href: "#install", label: "Install" },
   { href: "#providers", label: "Providers" },
+  { href: "#demo", label: "Demo" },
   { href: "https://github.com/tokentopapp/tokentop", label: "GitHub", external: true },
 ];
 ---
@@ -19,21 +19,30 @@ const links = [
           <Image src={iconPng} alt="tokentop logo" class="h-8 w-8 transition-transform group-hover:scale-105" loading="eager" />
           <span class="font-bold text-xl tracking-tight text-[var(--color-text-primary)]">tokentop</span>
         </a>
+        <span id="version-badge" class="hidden text-xs font-mono text-[var(--color-text-muted)]/50 border border-[var(--color-border)]/50 rounded px-1.5 py-0.5 select-none"></span>
       </div>
 
       <!-- Desktop Links -->
       <div class="hidden md:block">
         <div class="ml-10 flex items-baseline space-x-8">
           {links.map((link) => (
-            <a
-              href={link.href}
-              target={link.external ? "_blank" : undefined}
-              rel={link.external ? "noopener noreferrer" : undefined}
-              class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-200"
-            >
-              {link.label}
-              {link.external && <span class="inline-block ml-1 text-xs opacity-70">↗</span>}
-            </a>
+            link.external ? (
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-200"
+              >
+                <svg class="w-3.5 h-3.5 inline-block align-[-0.125em] mr-1" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub
+              </a>
+            ) : (
+              <a
+                href={link.href}
+                class="text-sm font-medium text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            )
           ))}
         </div>
       </div>
@@ -80,5 +89,19 @@ const links = [
     btn.addEventListener('click', () => {
       menu.classList.toggle('hidden');
     });
+  }
+
+  // Fetch latest release version from GitHub
+  const badge = document.getElementById('version-badge');
+  if (badge) {
+    fetch('https://api.github.com/repos/tokentopapp/tokentop/releases/latest')
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data?.tag_name) {
+          badge.textContent = data.tag_name;
+          badge.classList.remove('hidden');
+        }
+      })
+      .catch(() => {});
   }
 </script>
