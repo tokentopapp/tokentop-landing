@@ -50,7 +50,12 @@ const providers = [
     color: "#6366f1", 
     icon: "M18 6H6V24H18V6ZM24 30H0V0H24V30Z",
     viewBox: "0 0 24 30" 
-  }
+  },
+  { 
+    name: "Chutes", 
+    color: "#6366f1", 
+    icon: "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+  },
 ];
 
 const agents = [
@@ -68,7 +73,6 @@ const agents = [
   { 
     name: "Cursor", 
     color: "#00A3FF", 
-    wip: true,
     icon: "M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23"
   },
   { 
@@ -88,7 +92,12 @@ const agents = [
     color: "#4285f4", 
     wip: true,
     icon: "M9.16861 16.0529L17.2018 9.85156C17.5957 9.54755 18.1586 9.66612 18.3463 10.1384C19.3339 12.6288 18.8926 15.6217 16.9276 17.6766C14.9626 19.7314 12.2285 20.1821 9.72948 19.1557L6.9995 20.4775C10.9151 23.2763 15.6699 22.5841 18.6411 19.4749C20.9979 17.0103 21.7278 13.6508 21.0453 10.6214L21.0515 10.6278C20.0617 6.17736 21.2948 4.39847 23.8207 0.760904C23.8804 0.674655 23.9402 0.588405 24 0.5L20.6762 3.97585V3.96506L9.16658 16.0551M7.37742 16.7017C4.67579 14.0395 5.14158 9.91963 7.44676 7.54383C9.15135 5.78544 11.9442 5.06779 14.3821 6.12281L17.0005 4.87559C16.5288 4.52392 15.9242 4.14566 15.2305 3.87986C12.0948 2.54882 8.34069 3.21127 5.79171 5.8386C3.33985 8.36779 2.56881 12.2567 3.89286 15.5751C4.88192 18.0552 3.26056 19.8094 1.62731 21.5801C1.04853 22.2078 0.467774 22.8355 0 23.5L7.3754 16.7037" 
-  }
+  },
+  { 
+    name: "Copilot CLI", 
+    color: "#6e40c9", 
+    icon: "M23.922 16.997C23.061 18.492 18.063 22.02 12 22.02 5.937 22.02.939 18.492.078 16.997A.641.641 0 0 1 0 16.741v-2.869a.883.883 0 0 1 .053-.22c.372-.935 1.347-2.292 2.605-2.656.167-.429.414-1.055.644-1.517a10.098 10.098 0 0 1-.052-1.086c0-1.331.282-2.499 1.132-3.368.397-.406.89-.717 1.474-.952C7.255 2.937 9.248 1.98 11.978 1.98c2.731 0 4.767.957 6.166 2.093.584.235 1.077.546 1.474.952.85.869 1.132 2.037 1.132 3.368 0 .368-.014.733-.052 1.086.23.462.477 1.088.644 1.517 1.258.364 2.233 1.721 2.605 2.656a.841.841 0 0 1 .053.22v2.869a.641.641 0 0 1-.078.256Zm-11.75-5.992h-.344a4.359 4.359 0 0 1-.355.508c-.77.947-1.918 1.492-3.508 1.492-1.725 0-2.989-.359-3.782-1.259a2.137 2.137 0 0 1-.085-.104L4 11.746v6.585c1.435.779 4.514 2.179 8 2.179 3.486 0 6.565-1.4 8-2.179v-6.585l-.098-.104s-.033.045-.085.104c-.793.9-2.057 1.259-3.782 1.259-1.59 0-2.738-.545-3.508-1.492a4.359 4.359 0 0 1-.355-.508Zm2.328 3.25c.549 0 1 .451 1 1v2c0 .549-.451 1-1 1-.549 0-1-.451-1-1v-2c0-.549.451-1 1-1Zm-5 0c.549 0 1 .451 1 1v2c0 .549-.451 1-1 1-.549 0-1-.451-1-1v-2c0-.549.451-1 1-1Zm3.313-6.185c.136 1.057.403 1.913.878 2.497.442.544 1.134.938 2.344.938 1.573 0 2.292-.337 2.657-.751.384-.435.558-1.15.558-2.361 0-1.14-.243-1.847-.705-2.319-.477-.488-1.319-.862-2.824-1.025-1.487-.161-2.192.138-2.533.529-.269.307-.437.808-.438 1.578v.021c0 .265.021.562.063.893Zm-1.626 0c.042-.331.063-.628.063-.894v-.02c-.001-.77-.169-1.271-.438-1.578-.341-.391-1.046-.69-2.533-.529-1.505.163-2.347.537-2.824 1.025-.462.472-.705 1.179-.705 2.319 0 1.211.175 1.926.558 2.361.365.414 1.084.751 2.657.751 1.21 0 1.902-.394 2.344-.938.475-.584.742-1.44.878-2.497Z"
+  },
 ];
 
 const plugins = [
@@ -103,11 +112,13 @@ const plugins = [
   { name: "provider-minimax", type: "Provider", desc: "MiniMax usage and quota tracking.", official: true },
   { name: "provider-opencode-zen", type: "Provider", desc: "OpenCode Zen — curated AI models for coding agents.", official: true },
   { name: "provider-zai", type: "Provider", desc: "Z.ai coding plan usage and quota tracking.", official: true },
+  { name: "provider-chutes", type: "Provider", desc: "Chutes.ai usage and quota tracking.", official: true },
 
   // AGENTS (external repos in tokentopapp org — versions fetched dynamically)
   { name: "agent-opencode", type: "Agent", desc: "OpenCode session parsing, credential discovery, and real-time cost tracking.", official: true, repo: "tokentopapp/agent-opencode" },
   { name: "agent-claude-code", type: "Agent", desc: "Claude Code session parsing, credential discovery, and real-time cost tracking.", official: true, repo: "tokentopapp/agent-claude-code" },
-  { name: "agent-cursor", type: "Agent", desc: "Cursor session parsing, credential discovery, and real-time cost tracking.", official: true, repo: "tokentopapp/agent-cursor", meta: "🚧" },
+  { name: "agent-cursor", type: "Agent", desc: "Cursor session parsing, credential discovery, and real-time cost tracking.", official: true, repo: "tokentopapp/agent-cursor" },
+  { name: "agent-copilot-cli", type: "Agent", desc: "GitHub Copilot CLI session parsing, credential discovery, and real-time cost tracking.", official: true, repo: "tokentopapp/agent-copilot-cli" },
   { name: "agent-windsurf", type: "Agent", desc: "Windsurf (Codeium) session parsing, credential discovery, and cost tracking.", official: true, repo: "tokentopapp/agent-windsurf", meta: "🚧" },
   { name: "agent-gemini-cli", type: "Agent", desc: "Gemini CLI session parsing, credential discovery, and real-time cost tracking.", official: true, repo: "tokentopapp/agent-gemini-cli", meta: "🚧" },
   { name: "agent-antigravity", type: "Agent", desc: "Antigravity session parsing, credential discovery, and real-time cost tracking.", official: true, repo: "tokentopapp/agent-antigravity", meta: "🚧" },
