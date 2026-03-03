@@ -1,0 +1,189 @@
+---
+title: "Built-in Themes"
+description: "All 15 themes included with tokentop."
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import { Image } from 'astro:assets';
+
+import tokyoNight from '../../../../assets/themes/tokyo-night.png';
+import dracula from '../../../../assets/themes/dracula.png';
+import nord from '../../../../assets/themes/nord.png';
+import oneDark from '../../../../assets/themes/one-dark.png';
+import catppuccinMocha from '../../../../assets/themes/catppuccin-mocha.png';
+import gruvboxDark from '../../../../assets/themes/gruvbox-dark.png';
+import kanagawa from '../../../../assets/themes/kanagawa.png';
+import rosePine from '../../../../assets/themes/rose-pine.png';
+import opencode from '../../../../assets/themes/opencode.png';
+import claudeCode from '../../../../assets/themes/claude-code.png';
+import githubLight from '../../../../assets/themes/github-light.png';
+import catppuccinLatte from '../../../../assets/themes/catppuccin-latte.png';
+import gruvboxLight from '../../../../assets/themes/gruvbox-light.png';
+import rosePineDawn from '../../../../assets/themes/rose-pine-dawn.png';
+import solarizedLight from '../../../../assets/themes/solarized-light.png';
+
+tokentop includes 15 carefully crafted themes. Each is designed to look great in the terminal and provide clear visual hierarchy for usage data.
+
+## Dark themes
+
+### Tokyo Night
+
+The default theme. Cool blues and purples inspired by the Tokyo Night color scheme. Excellent contrast for extended monitoring sessions.
+
+```
+ttop demo --theme tokyo-night
+```
+
+<Image src={tokyoNight} alt="Tokyo Night theme preview" />
+
+### Dracula
+
+The popular Dracula palette with its signature purple, pink, and cyan accents on a dark background.
+
+```
+ttop demo --theme dracula
+```
+
+<Image src={dracula} alt="Dracula theme preview" />
+
+### Nord
+
+Arctic, north-bluish color palette with muted tones. Clean and easy on the eyes.
+
+```
+ttop demo --theme nord
+```
+
+<Image src={nord} alt="Nord theme preview" />
+
+### One Dark
+
+Based on Atom's One Dark theme. Warm accent colors on a neutral dark background.
+
+```
+ttop demo --theme one-dark
+```
+
+<Image src={oneDark} alt="One Dark theme preview" />
+
+### Catppuccin Mocha
+
+The darkest flavor of the Catppuccin palette. Rich, warm colors with a soothing dark base.
+
+```
+ttop demo --theme catppuccin-mocha
+```
+
+<Image src={catppuccinMocha} alt="Catppuccin Mocha theme preview" />
+
+### Gruvbox Dark
+
+Retro groove colors with warm, earthy tones. High contrast yellow, green, and orange accents.
+
+```
+ttop demo --theme gruvbox-dark
+```
+
+<Image src={gruvboxDark} alt="Gruvbox Dark theme preview" />
+
+### Kanagawa
+
+Inspired by the famous wave painting. Deep blues with warm accent colors from the Japanese palette.
+
+```
+ttop demo --theme kanagawa
+```
+
+<Image src={kanagawa} alt="Kanagawa theme preview" />
+
+### Rosé Pine
+
+Soho vibes with muted pinks, golds, and greens on a very dark base.
+
+```
+ttop demo --theme rose-pine
+```
+
+<Image src={rosePine} alt="Rosé Pine theme preview" />
+
+### OpenCode
+
+A theme designed to match the OpenCode terminal interface. Dark background with blue accents.
+
+```
+ttop demo --theme opencode
+```
+
+<Image src={opencode} alt="OpenCode theme preview" />
+
+### Claude Code
+
+Matches the Claude Code terminal aesthetic. Dark with warm amber and orange accents.
+
+```
+ttop demo --theme claude-code
+```
+
+<Image src={claudeCode} alt="Claude Code theme preview" />
+
+## Light themes
+
+### GitHub Light
+
+Clean and minimal, inspired by GitHub's light UI. High contrast black text on a white-adjacent background.
+
+```
+ttop demo --theme github-light
+```
+
+<Image src={githubLight} alt="GitHub Light theme preview" />
+
+### Catppuccin Latte
+
+The lightest Catppuccin flavor. Pastel accents on a warm light background.
+
+```
+ttop demo --theme catppuccin-latte
+```
+
+<Image src={catppuccinLatte} alt="Catppuccin Latte theme preview" />
+
+### Gruvbox Light
+
+The light variant of Gruvbox. Warm, paper-like background with earthy accent colors.
+
+```
+ttop demo --theme gruvbox-light
+```
+
+<Image src={gruvboxLight} alt="Gruvbox Light theme preview" />
+
+### Rosé Pine Dawn
+
+The light variant of Rosé Pine. Soft pinks and golds on a warm light base.
+
+```
+ttop demo --theme rose-pine-dawn
+```
+
+<Image src={rosePineDawn} alt="Rosé Pine Dawn theme preview" />
+
+### Solarized Light
+
+Ethan Schoonover's precision-engineered color scheme. Carefully balanced contrast with distinctive yellow and blue accents.
+
+```
+ttop demo --theme solarized-light
+```
+
+<Image src={solarizedLight} alt="Solarized Light theme preview" />
+
+## Previewing themes
+
+The fastest way to preview any theme is by passing `--theme` to demo mode:
+
+```bash
+ttop demo --theme dracula
+```
+
+You can also change themes at runtime: press `,` (comma) to open Settings, navigate to Display, and cycle through available themes. Or use the command palette (`:`) and search for "Theme:".
