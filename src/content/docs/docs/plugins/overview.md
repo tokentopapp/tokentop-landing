@@ -30,9 +30,9 @@ tokentop discovers local plugins from several sources:
 
 - **Default directory**: `~/.config/tokentop/plugins/` (files and directories)
 - **CLI flag**: `ttop --plugin <path>` loads a plugin for that run (repeatable)
-- **Config file**: `config.plugins.local` array in `~/.config/tokentop/config.json`
+- **Config file**: `plugins.local` array in `~/.config/tokentop/config.json`
 
-For directory-based plugins, the loader resolves entry points by checking `package.json` main/exports, then `src/index.ts`, `index.ts`, `dist/index.js`.
+See [Local Development](/docs/plugins/local-development) for a detailed guide on all three methods, entry point resolution, and a recommended development workflow.
 
 ## Permission sandboxing
 
@@ -65,4 +65,5 @@ The `@tokentop/*` scope is reserved for official plugins.
 - [Agent Plugins](/docs/plugins/agent-plugins) — Build an agent integration
 - [Theme Plugins](/docs/plugins/theme-plugins) — Create a custom theme
 - [Notification Plugins](/docs/plugins/notification-plugins) — Create a notification hook
+- [Local Development](/docs/plugins/local-development) — Develop and test plugins locally
 - [Publishing](/docs/plugins/publishing) — Publish your plugin to npm

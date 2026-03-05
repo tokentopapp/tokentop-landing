@@ -48,6 +48,7 @@ export default defineConfig({
             { slug: 'docs/plugins/agent-plugins' },
             { slug: 'docs/plugins/theme-plugins' },
             { slug: 'docs/plugins/notification-plugins' },
+            { slug: 'docs/plugins/local-development' },
             { slug: 'docs/plugins/publishing' },
           ],
         },
