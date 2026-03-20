@@ -43,7 +43,7 @@ Here is the complete configuration file with every field set to its default valu
   },
   "notifications": {
     "toastsEnabled": true,
-    "soundEnabled": false
+    "soundEnabled": true
   },
   "budgets": {
     "daily": null,
@@ -124,7 +124,7 @@ Controls in-app notification behavior.
 | Field | Type | Default | Description |
 |-------|------|---------|-------------|
 | `toastsEnabled` | `boolean` | `true` | Show toast notifications for events (budget warnings, provider errors, etc.). |
-| `soundEnabled` | `boolean` | `false` | Play a sound with notifications (requires a notification plugin that supports audio). |
+| `soundEnabled` | `boolean` | `true` | Play a system sound and desktop notification with alerts. Uses native sounds on macOS (`afplay`) and Linux (`canberra-gtk-play`), plus OSC 777/9 desktop notifications on supported terminals. |
 
 ---
 
@@ -150,7 +150,7 @@ Controls when budget alerts are triggered, as a percentage of your budget limits
 | `warningPercent` | `number` | `80` | Show a warning when spending reaches this percentage of a budget limit. |
 | `criticalPercent` | `number` | `95` | Show a critical alert at this percentage. |
 
-If you have notification plugins configured (terminal bell, visual flash, etc.), alerts are also delivered through those channels.
+When `soundEnabled` is on, alerts also trigger a system sound and desktop notification. The built-in visual flash plugin briefly pulses the screen border with a severity-colored glow.
 
 ---
 

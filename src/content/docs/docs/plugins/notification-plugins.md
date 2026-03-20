@@ -3,7 +3,7 @@ title: "Notification Plugins"
 description: "How to create a notification plugin for custom alert delivery."
 ---
 
-Notification plugins deliver alerts when spending thresholds are crossed, rate limits are hit, or sessions start and end. They can send notifications via any channel — Slack, Discord, email, desktop notifications, or anything else.
+Notification plugins deliver alerts when spending thresholds are crossed or rate limits are hit. They can send notifications via any channel — Slack, Discord, email, desktop notifications, or anything else.
 
 ## Interface
 
@@ -11,6 +11,7 @@ Notification plugins deliver alerts when spending thresholds are crossed, rate l
 import type { NotificationPlugin } from '@tokentop/plugin-sdk';
 
 const myNotifier: NotificationPlugin = {
+  apiVersion: 2,
   id: 'my-notifier',
   type: 'notification',
   name: 'My Notifier',
@@ -24,37 +25,35 @@ const myNotifier: NotificationPlugin = {
 
   async initialize(ctx) {
     // Set up any connections or state
+    ctx.logger.debug('My notifier initialized');
   },
 
-  async notify(event, ctx) {
+  async notify(ctx, event) {
     // Deliver the notification
     await fetch('https://hooks.myservice.com/webhook', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         type: event.type,
+        title: event.title,
         message: event.message,
         severity: event.severity,
       }),
     });
   },
 
-  async test(ctx) {
-    // Send a test notification to verify configuration
-    await this.notify({
-      type: 'test',
-      message: 'tokentop notification test',
-      severity: 'info',
-    }, ctx);
+  supports(event) {
+    // Declare which event types this plugin handles
+    return (
+      event.type.startsWith('budget.') ||
+      event.type.startsWith('provider.')
+    );
   },
 
-  supports(eventType) {
-    // Declare which event types this plugin handles
-    return [
-      'usage_limit_warning',
-      'budget_exceeded',
-      'rate_limit_warning',
-    ].includes(eventType);
+  async test(ctx) {
+    // Send a test notification to verify configuration
+    ctx.logger.info('Testing My Notifier...');
+    return true;
   },
 };
 
@@ -63,22 +62,44 @@ export default myNotifier;
 
 ## Event types
 
-| Event | Description |
-|-------|-------------|
-| `usage_limit_warning` | Provider usage is approaching its limit |
-| `budget_exceeded` | A daily, weekly, or monthly budget has been exceeded |
-| `rate_limit_warning` | API rate limits are being approached or hit |
-| `session_started` | A new coding agent session has begun |
-| `session_ended` | A coding agent session has completed |
-| `provider_error` | A provider API returned an error |
+Events have a `type` string and a `severity` level (`"info"`, `"warning"`, or `"critical"`).
+
+| Event Type | Severity | Description |
+|------------|----------|-------------|
+| `provider.limitReached` | `critical` | A provider's rate limit has been reached |
+| `provider.limitReached` | `warning` / `critical` | Provider usage approaching limit (≥80%) |
+| `budget.thresholdCrossed` | `warning` | Spending reached the warning threshold (default 80%) |
+| `budget.limitReached` | `critical` | Spending reached the critical threshold (default 95%) |
+| `plugin.crashed` | `critical` | A plugin's circuit breaker tripped after repeated failures |
+
+## Event structure
+
+Every event passed to `notify` has this shape:
+
+```typescript
+interface NotificationEvent {
+  type: string;          // e.g. "budget.thresholdCrossed"
+  severity: "info" | "warning" | "critical";
+  title: string;         // e.g. "Daily Budget Warning"
+  message: string;       // e.g. "Daily spending at 85% ($42.50/$50.00)."
+  timestamp: number;     // Date.now()
+  data: Record<string, unknown>; // Extra context (provider ID, budget type, etc.)
+}
+```
 
 ## Built-in notification plugins
 
 tokentop ships with two built-in notification plugins:
 
-- **Terminal Bell** — Triggers your terminal's bell character for audible alerts
-- **Visual Flash** — Flashes the terminal screen briefly to draw attention
+- **Terminal Bell** — Plays a native system sound (`afplay` on macOS, `canberra-gtk-play` on Linux), sends OSC 777/9 desktop notifications on supported terminals (iTerm2, Kitty, WezTerm, Windows Terminal), and falls back to the BEL character.
+- **Visual Flash** — Briefly pulses the screen border with a severity-colored glow (red for critical, amber for warning, blue for info) that fades over 500ms.
+
+Both plugins respect the `soundEnabled` config toggle and the `minSeverity` setting (default: `warning`).
 
 ## Selective event handling
 
-Use the `supports` method to declare which events your plugin handles. tokentop only calls `notify` for events the plugin has declared support for, so you don't need to filter events internally.
+Use the `supports` method to declare which events your plugin handles. The method receives the full `NotificationEvent` object, so you can filter by `event.type`, `event.severity`, or any field in `event.data`. tokentop only calls `notify` for events the plugin has declared support for.
+
+## Deduplication
+
+The notification bus deduplicates events within a 5-minute window. If the same event (e.g., the same provider hitting its limit) fires multiple times within 5 minutes, only the first triggers notifications.
